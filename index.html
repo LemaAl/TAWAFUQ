@@ -1,4 +1,9 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tawafuq</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
@@ -70,6 +75,170 @@ p.body{font-size:.92rem;color:#c0c0e0;line-height:1.85;margin-bottom:.75rem;}
 .obj-item{display:flex;align-items:flex-start;gap:10px;padding:.85rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:10px;font-size:.86rem;color:#c0c0e0;line-height:1.6;transition:border-color .2s;}
 .obj-item:hover{border-color:var(--border2);}
 .obj-num{font-size:.7rem;font-weight:700;color:var(--purple2);background:rgba(168,85,247,.15);border-radius:6px;padding:2px 7px;flex-shrink:0;margin-top:1px;}
+/* ================= MOBILE OPTIMIZATION ================= */
+
+@media (max-width: 600px) {
+
+  .page{
+    width:100%;
+    min-height:100vh;
+    border-radius:0;
+  }
+
+  .hero{
+    padding:2rem 1rem 1.5rem;
+  }
+
+  .hero-glow{
+    width:280px;
+    height:140px;
+  }
+
+  .logo{
+    width:68px;
+    height:68px;
+    font-size:24px;
+    margin-bottom:1rem;
+  }
+
+  .hero h1{
+    font-size:2rem;
+    letter-spacing:3px;
+  }
+
+  .hero .tagline{
+    font-size:1rem;
+    line-height:1.5;
+  }
+
+  .hero .sup{
+    font-size:.9rem;
+  }
+
+  .badge-row{
+    gap:6px;
+    margin-top:1rem;
+  }
+
+  .badge{
+    font-size:.75rem;
+    padding:6px 10px;
+  }
+
+  .tabs{
+    padding:0 .5rem;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+
+  .tabs::-webkit-scrollbar{
+    display:none;
+  }
+
+  .tab{
+    padding:.9rem .85rem;
+    font-size:.9rem;
+    flex-shrink:0;
+  }
+
+  .content{
+    padding:1.25rem 1rem 2rem;
+    max-width:100%;
+  }
+
+  .sec-label{
+    font-size:.78rem;
+  }
+
+  p.body{
+    font-size:1rem;
+    line-height:1.8;
+  }
+
+  .feat-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .feat-card{
+    padding:1rem .75rem;
+  }
+
+  .feat-icon{
+    font-size:1.8rem;
+  }
+
+  .feat-label{
+    font-size:.8rem;
+  }
+
+  .feat-val{
+    font-size:.95rem;
+  }
+
+  .team-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .team-card{
+    padding:1rem .75rem;
+  }
+
+  .team-name{
+    font-size:.9rem;
+  }
+
+  .card{
+    padding:1rem;
+  }
+
+  .pipe-row{
+    display:block;
+  }
+
+  .pipe-lbl{
+    width:auto;
+    text-align:left;
+    margin-bottom:6px;
+    display:block;
+  }
+
+  .pipe-track{
+    width:100%;
+  }
+
+  .pipe-pct{
+    width:auto;
+    text-align:left;
+    margin-top:5px;
+    display:block;
+  }
+
+  .tools-wrap{
+    gap:8px;
+  }
+
+  .tool{
+    font-size:.82rem;
+    padding:6px 12px;
+  }
+
+  .obj-item{
+    font-size:.92rem;
+    padding:.9rem;
+  }
+
+  .video-wrap{
+    border-radius:10px;
+  }
+
+  iframe{
+    width:100%;
+    height:100%;
+  }
+}
 </style>
 
 <h2 style="position:absolute;left:-9999px;">Tawafuq project interactive page</h2>
@@ -186,3 +355,5 @@ document.querySelectorAll('.tab').forEach(t=>{
   });
 });
 </script>
+</body>
+</html>
