@@ -1,0 +1,188 @@
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --purple:#7c3aed;--purple2:#a855f7;--pink:#ec4899;--blue:#3b82f6;--blue2:#60a5fa;
+  --bg:#0a0a12;--bg2:#0f0f1a;--bg3:#13131f;--border:#1e1e35;--border2:#2d2d50;
+  --text:#f0f0ff;--muted:#7070a0;--subtle:#3a3a60;
+}
+.page{background:var(--bg);border-radius:16px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--text);}
+.hero{padding:2.5rem 1.5rem 2rem;text-align:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.hero-glow{position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:400px;height:200px;background:radial-gradient(ellipse,rgba(124,58,237,.25) 0%,rgba(236,72,153,.15) 40%,transparent 70%);pointer-events:none;}
+.logo{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--pink));display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:26px;font-weight:700;color:#fff;position:relative;z-index:1;}
+.hero h1{font-size:2.4rem;font-weight:700;letter-spacing:5px;background:linear-gradient(90deg,var(--blue2),var(--purple2),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.4rem;position:relative;z-index:1;}
+.hero .tagline{font-size:.9rem;color:var(--muted);margin-bottom:.25rem;position:relative;z-index:1;}
+.hero .sup{font-size:.82rem;color:var(--subtle);position:relative;z-index:1;}
+.badge-row{display:flex;justify-content:center;gap:8px;margin-top:1rem;flex-wrap:wrap;position:relative;z-index:1;}
+.badge{font-size:.72rem;padding:4px 12px;border-radius:20px;border:1px solid var(--border2);color:var(--muted);background:var(--bg2);}
+.badge.glow{border-color:var(--purple);color:var(--purple2);background:rgba(124,58,237,.12);}
+.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 1.25rem;background:var(--bg);overflow-x:auto;}
+.tab{padding:.8rem 1.1rem;font-size:.85rem;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s;display:flex;align-items:center;gap:5px;}
+.tab.active{color:#fff;border-image:linear-gradient(90deg,var(--purple),var(--pink)) 1;}
+.tab:hover:not(.active){color:#c0c0e0;}
+.content{padding:1.75rem 1.5rem;max-width:800px;margin:0 auto;}
+.section{display:none;}
+.section.active{display:block;}
+.sec-label{font-size:.7rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.85rem;display:flex;align-items:center;gap:6px;}
+.sec-label i{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--pink));display:inline-block;flex-shrink:0;}
+hr.div{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+p.body{font-size:.92rem;color:#c0c0e0;line-height:1.85;margin-bottom:.75rem;}
+.hl{background:linear-gradient(90deg,var(--blue2),var(--purple2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:600;}
+.card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.25rem;transition:border-color .3s;}
+.card:hover{border-color:var(--purple);}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:1rem;}
+.feat-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.1rem;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;}
+.feat-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(236,72,153,.08));opacity:0;transition:opacity .3s;}
+.feat-card:hover{border-color:var(--purple2);transform:translateY(-2px);}
+.feat-card:hover::before{opacity:1;}
+.feat-icon{font-size:1.6rem;margin-bottom:8px;}
+.feat-label{font-size:.72rem;color:var(--muted);}
+.feat-val{font-size:.9rem;color:#e0e0ff;font-weight:600;margin-top:3px;}
+.video-wrap{border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9;border:1px solid var(--border2);}
+.video-wrap iframe{width:100%;height:100%;border:none;display:block;}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;}
+.team-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;}
+.team-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--pink));transform:scaleX(0);transition:transform .3s;}
+.team-card:hover{border-color:var(--border2);transform:translateY(-3px);}
+.team-card:hover::after{transform:scaleX(1);}
+.avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;margin:0 auto 10px;}
+.av1{background:linear-gradient(135deg,#3b1e6e,#7c3aed);color:#c4b5fd;}
+.av2{background:linear-gradient(135deg,#6e1e55,#ec4899);color:#f9a8d4;}
+.av3{background:linear-gradient(135deg,#1e3a6e,#3b82f6);color:#93c5fd;}
+.av4{background:linear-gradient(135deg,#3b1e6e,#a855f7);color:#d8b4fe;}
+.avE{background:linear-gradient(135deg,#1e4a3a,#10b981);color:#6ee7b7;}
+.team-name{font-size:.83rem;color:#e0e0ff;font-weight:500;}
+.pipeline{display:flex;flex-direction:column;gap:14px;margin-top:.5rem;}
+.pipe-row{display:flex;align-items:center;gap:12px;}
+.pipe-lbl{font-size:.77rem;color:var(--muted);width:100px;text-align:right;flex-shrink:0;}
+.pipe-track{flex:1;background:var(--bg3);border-radius:6px;height:32px;overflow:hidden;border:1px solid var(--border);}
+.pipe-bar{height:100%;display:flex;align-items:center;padding:0 12px;font-size:.76rem;font-weight:500;color:#fff;border-radius:6px;width:0%;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+.b-purple{background:linear-gradient(90deg,var(--purple),var(--purple2));}
+.b-pink{background:linear-gradient(90deg,#be185d,var(--pink));}
+.b-blue{background:linear-gradient(90deg,#1d4ed8,var(--blue2));}
+.pipe-pct{font-size:.78rem;color:var(--muted);width:40px;text-align:right;flex-shrink:0;}
+.tools-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-top:.5rem;}
+.tool{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:.79rem;color:var(--muted);display:flex;align-items:center;gap:5px;cursor:default;transition:all .25s;}
+.tool:hover{border-color:var(--purple2);color:var(--purple2);background:rgba(168,85,247,.08);}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--pink);display:inline-block;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.7);}}
+.obj-list{display:flex;flex-direction:column;gap:10px;margin-top:.5rem;}
+.obj-item{display:flex;align-items:flex-start;gap:10px;padding:.85rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:10px;font-size:.86rem;color:#c0c0e0;line-height:1.6;transition:border-color .2s;}
+.obj-item:hover{border-color:var(--border2);}
+.obj-num{font-size:.7rem;font-weight:700;color:var(--purple2);background:rgba(168,85,247,.15);border-radius:6px;padding:2px 7px;flex-shrink:0;margin-top:1px;}
+</style>
+
+<h2 style="position:absolute;left:-9999px;">Tawafuq project interactive page</h2>
+
+<div class="page">
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="logo">T</div>
+    <h1>TAWAFUQ</h1>
+    <p class="tagline">AI-Powered Public Speaking Evaluator</p>
+    <p class="sup">Supervisor: Dr. Eman Alzaid</p>
+    <div class="badge-row">
+      <span class="badge glow"><span class="pulse"></span> AI System</span>
+      <span class="badge">CS Department</span>
+      <span class="badge">1447 · Semester 1</span>
+      <span class="badge">F11-1</span>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="about">✦ About</div>
+    <div class="tab" data-tab="demo">▶ Demo</div>
+    <div class="tab" data-tab="team">◈ Team</div>
+    <div class="tab" data-tab="tech">⬡ Tech</div>
+    <div class="tab" data-tab="objectives">◎ Objectives</div>
+  </div>
+
+  <div class="content">
+
+    <div class="section active" id="tab-about">
+      <div class="sec-label"><i></i>the problem</div>
+      <p class="body">Most public speaking tools unfairly penalize <span class="hl">any negative facial expression</span>, even when the topic is serious or emotional. They evaluate face and speech <span class="hl">separately</span> — missing the full picture.</p>
+      <div class="sec-label" style="margin-top:1.25rem;"><i></i>our solution</div>
+      <p class="body">Tawafuq analyzes <span class="hl">facial expressions, voice, and speech together</span> — judging performance based on emotional alignment, not raw expressions alone. Fair, accurate, actionable.</p>
+      <div class="feat-grid">
+        <div class="feat-card"><div class="feat-icon">👁️</div><div class="feat-label">Face Analysis</div><div class="feat-val">VGG16</div></div>
+        <div class="feat-card"><div class="feat-icon">🎙️</div><div class="feat-label">Speech</div><div class="feat-val">Whisper + GPT</div></div>
+        <div class="feat-card"><div class="feat-icon">🧠</div><div class="feat-label">Emotion</div><div class="feat-val">EmotionBERT</div></div>
+        <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-label">Accuracy</div><div class="feat-val">78%</div></div>
+      </div>
+      <hr class="div">
+      <div class="sec-label"><i></i>future plans</div>
+      <p class="body" style="margin:0;">Multi-language support · Mobile compatibility · Gesture & body-language analysis · Progress tracking over time</p>
+    </div>
+
+    <div class="section" id="tab-demo">
+      <div class="sec-label"><i></i>system demo</div>
+      <div class="video-wrap">
+        <iframe src="https://drive.google.com/file/d/12Wh2UU2gVm-hJALui8IvPYJnk9KoaneB/preview" allow="autoplay" allowfullscreen></iframe>
+      </div>
+      <p style="font-size:.8rem;color:var(--muted);margin-top:.85rem;text-align:center;">Full walkthrough — from video upload to detailed feedback report</p>
+    </div>
+
+    <div class="section" id="tab-team">
+      <div class="sec-label"><i></i>project team</div>
+      <div class="team-grid">
+        <div class="team-card"><div class="avatar av1">LA</div><div class="team-name">Lema Alsanad</div></div>
+        <div class="team-card"><div class="avatar av2">MA</div><div class="team-name">Manar Alruwais</div></div>
+        <div class="team-card"><div class="avatar av3">MK</div><div class="team-name">Mariyah Alkhalefah</div></div>
+        <div class="team-card"><div class="avatar av4">RA</div><div class="team-name">Reema Alhamed</div></div>
+      </div>
+      <hr class="div">
+      <div class="sec-label"><i></i>supervisor</div>
+      <div class="card" style="display:flex;align-items:center;gap:14px;">
+        <div class="avatar avE" style="flex-shrink:0;">EZ</div>
+        <div><div style="font-weight:600;color:#e0e0ff;font-size:.95rem;">Dr. Eman Alzaid</div><div style="font-size:.8rem;color:var(--muted);margin-top:3px;">CS Department · Project Supervisor</div></div>
+      </div>
+    </div>
+
+    <div class="section" id="tab-tech">
+      <div class="sec-label"><i></i>model performance</div>
+      <div class="pipeline">
+        <div class="pipe-row"><span class="pipe-lbl">VGG16</span><div class="pipe-track"><div class="pipe-bar b-purple" id="b1">Face emotion</div></div><span class="pipe-pct">78%</span></div>
+        <div class="pipe-row"><span class="pipe-lbl">Whisper</span><div class="pipe-track"><div class="pipe-bar b-pink" id="b2">Speech transcription</div></div><span class="pipe-pct">~95%</span></div>
+        <div class="pipe-row"><span class="pipe-lbl">EmotionBERT</span><div class="pipe-track"><div class="pipe-bar b-blue" id="b3">Alignment score</div></div><span class="pipe-pct">~80%</span></div>
+      </div>
+      <hr class="div">
+      <div class="sec-label"><i></i>built with</div>
+      <div class="tools-wrap">
+        <div class="tool">🧠 VGG16</div><div class="tool">🎙️ Whisper</div><div class="tool">💬 GPT</div>
+        <div class="tool">📊 EmotionBERT</div><div class="tool">〰️ wav2vec</div><div class="tool">🐍 Flask</div>
+        <div class="tool">🗄️ Supabase</div><div class="tool">💻 Visual Studio</div><div class="tool">🎵 librosa</div>
+      </div>
+    </div>
+
+    <div class="section" id="tab-objectives">
+      <div class="sec-label"><i></i>project objectives</div>
+      <div class="obj-list">
+        <div class="obj-item"><span class="obj-num">01</span>Design and implement an AI system to evaluate public speaking performance</div>
+        <div class="obj-item"><span class="obj-num">02</span>Develop algorithms that align facial expressions with speech sentiment to avoid unfair scoring</div>
+        <div class="obj-item"><span class="obj-num">03</span>Provide actionable feedback on key delivery features including voice and expressions</div>
+        <div class="obj-item"><span class="obj-num">04</span>Create a user-friendly interface that lets individuals easily understand their feedback</div>
+        <div class="obj-item"><span class="obj-num">05</span>Test and evaluate the system's effectiveness in improving public speaking skills</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('tab-'+t.dataset.tab).classList.add('active');
+    if(t.dataset.tab==='tech'){
+      setTimeout(()=>{
+        document.getElementById('b1').style.width='78%';
+        document.getElementById('b2').style.width='95%';
+        document.getElementById('b3').style.width='80%';
+      },150);
+    }
+  });
+});
+</script>
